@@ -1,7 +1,16 @@
+using eSchool.Application.Services.Implementations;
+using eSchool.Application.Services.Interfaces;
+using eSchool.Infrastructure.UnitOfWork.Implementation;
+using eSchool.Infrastructure.UnitOfWork.Interface;
+
 var builder = WebApplication.CreateBuilder(args);
+
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<IGradeService, GradeService>();
+builder.Services.AddScoped<ISubjectService, SubjectService>();
 
 var app = builder.Build();
 

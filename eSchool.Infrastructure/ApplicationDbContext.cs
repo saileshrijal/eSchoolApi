@@ -1,4 +1,4 @@
-﻿
+﻿using eSchool.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace eSchool.Infrastructure
@@ -9,5 +9,7 @@ namespace eSchool.Infrastructure
         {
             
         }
+        public DbSet<Grade>? Grades { get; set; }
+        public DbSet<Subject>? Subjects { get; set; }
     }
 }
