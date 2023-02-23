@@ -1,10 +1,9 @@
-﻿namespace eSchool.Domain.Models
+﻿namespace eSchool.Presentation.ViewModels
 {
-    public class Subject
+    public class SubjectVM
     {
         public int Id { get; set; }
         public string? Name { get; set; }
         public int GradeId { get; set; }
-        public Grade? Grade { get; set; }
     }
 }

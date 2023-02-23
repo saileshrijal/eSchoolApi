@@ -5,7 +5,7 @@ namespace eSchool.Infrastructure.UnitOfWork.Interface
     public interface IUnitOfWork
     {
         IGradeRepository Grade { get; }
-        ISubjectRepository Subject { get; }
+        ISubjectRepository  Subject { get; }
         Task<int> SaveAsync();
     }
 }
