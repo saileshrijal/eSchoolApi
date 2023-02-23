@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eSchool.Domain", "eSchool.Domain\eSchool.Domain.csproj", "{E4E8525F-D0CB-444B-A83B-39F15A4740D0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eSchool.Domain", "eSchool.Domain\eSchool.Domain.csproj", "{E4E8525F-D0CB-444B-A83B-39F15A4740D0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eSchool.Infrastructure", "eSchool.Infrastructure\eSchool.Infrastructure.csproj", "{671F6104-6BD5-48B1-A4A9-8090149C0630}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eSchool.Infrastructure", "eSchool.Infrastructure\eSchool.Infrastructure.csproj", "{671F6104-6BD5-48B1-A4A9-8090149C0630}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eSchool.Application", "eSchool.Application\eSchool.Application.csproj", "{260DE643-931A-4AF0-A1C0-1A88F27FD92F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eSchool.Application", "eSchool.Application\eSchool.Application.csproj", "{260DE643-931A-4AF0-A1C0-1A88F27FD92F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eSchool.Presentation", "eSchool.Presentation\eSchool.Presentation.csproj", "{3556327E-4E1D-4DC5-BEF2-80D109704E72}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eSchool.Presentation", "eSchool.Presentation\eSchool.Presentation.csproj", "{B5E1DD97-C785-49D4-97CD-6A08B92E3BB8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +29,10 @@ Global
 		{260DE643-931A-4AF0-A1C0-1A88F27FD92F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{260DE643-931A-4AF0-A1C0-1A88F27FD92F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{260DE643-931A-4AF0-A1C0-1A88F27FD92F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3556327E-4E1D-4DC5-BEF2-80D109704E72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3556327E-4E1D-4DC5-BEF2-80D109704E72}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3556327E-4E1D-4DC5-BEF2-80D109704E72}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3556327E-4E1D-4DC5-BEF2-80D109704E72}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5E1DD97-C785-49D4-97CD-6A08B92E3BB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5E1DD97-C785-49D4-97CD-6A08B92E3BB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5E1DD97-C785-49D4-97CD-6A08B92E3BB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5E1DD97-C785-49D4-97CD-6A08B92E3BB8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
