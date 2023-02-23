@@ -21,29 +21,29 @@ namespace Onion.Infrastructures.Repository.Interface
         }
 
 
-        public async Task AddRange(IEnumerable<T> entities)
+        public async Task AddRangeAsync(IEnumerable<T> entities)
         {
             await _entities.AddRangeAsync(entities);
             _context.SaveChanges();
         }
 
-        public async Task<IEnumerable<T>> Find(Expression<Func<T, bool>> predicate)
+        public async Task<IEnumerable<T>> FindAsync(Expression<Func<T, bool>> predicate)
         {
             return await _entities.Where(predicate).ToListAsync();
         }
 
-        virtual public async Task<IEnumerable<T>> GetAll()
+        virtual public async Task<IEnumerable<T>> GetAllAsync()
         {
             return await _entities.ToListAsync();
         }
 
-        virtual public async Task<T> GetById(int Id)
+        virtual public async Task<T> GetByIdAsync(int Id)
         {
             var t = await _entities.FindAsync(Id);
             return t!;
         }
 
-        public async Task Insert(T entity)
+        public async Task AddAsync(T entity)
         {
             await _entities.AddAsync(entity);
         }

@@ -1,7 +1,9 @@
+using eSchool.Application.Services.Implementations;
 using eSchool.Infrastructure;
 using eSchool.Infrastructure.UnitOfWork.Implementation;
 using eSchool.Infrastructure.UnitOfWork.Interface;
 using Microsoft.EntityFrameworkCore;
+using Onion.Application.Services.Interface;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,11 +19,18 @@ var builder = WebApplication.CreateBuilder(args);
     builder.Services.AddSwaggerGen();
 
     builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+    builder.Services.AddScoped<IGradeService, GradeService>();
 }
 
 var app = builder.Build();
 
 {
+    if (app.Environment.IsDevelopment())
+    {
+        app.UseSwagger();
+        app.UseSwaggerUI();
+    }
+
     app.UseHttpsRedirection();
 
     app.UseAuthorization();
