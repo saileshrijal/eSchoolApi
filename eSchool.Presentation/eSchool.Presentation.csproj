@@ -6,4 +6,10 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\eSchool.Application\eSchool.Application.csproj" />
+    <ProjectReference Include="..\eSchool.Domain\eSchool.Domain.csproj" />
+    <ProjectReference Include="..\eSchool.Infrastructure\eSchool.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>
