@@ -16,6 +16,13 @@ namespace eSchool.Application.Services.Implementations
 
         public async Task CreateGradeAsync(GradeDto gradeDto)
         {
+            var checkGradeByNameSection = await _unitOfWork.Grade.GetAsync(x => x.Name!.ToLower().Trim() == gradeDto.Name!.ToLower().Trim()
+                                                    && x.Section!.ToLower().Trim() == gradeDto.Section!.ToLower().Trim());
+            if (checkGradeByNameSection != null)
+            {
+                throw new Exception($"Grade: {gradeDto.Name} {gradeDto.Section} already exists");
+            }
+
             var grade = new Grade()
             {
                 Name = gradeDto.Name,
@@ -57,6 +64,17 @@ namespace eSchool.Application.Services.Implementations
 
         public async Task UpdateGradeAsync(int id, GradeDto gradeDto)
         {
+            var checkGradeByNameSection = await _unitOfWork.Grade.GetAsync(x => x.Name!.ToLower().Trim() == gradeDto.Name!.ToLower().Trim()
+                                                   && x.Section!.ToLower().Trim() == gradeDto.Section!.ToLower().Trim());
+
+            if (checkGradeByNameSection != null)
+            {
+                if (checkGradeByNameSection.Id != id)
+                {
+                    throw new Exception($"Grade: {gradeDto.Name} {gradeDto.Section} already exists");
+                }
+            }
+
             var grade = await _unitOfWork.Grade.GetByIdAsync(id);
             if (grade == null) { throw new Exception("Grade does not found"); }
             grade.Name = gradeDto.Name;

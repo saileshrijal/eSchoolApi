@@ -23,6 +23,7 @@ namespace eSchool.Presentation.Controllers
             try
             {
                 var gradesDto = await _gradeService.GetAllGradesAsync();
+                
                 var result = gradesDto.Select(x => new
                 {
                     x.Id,
@@ -43,12 +44,14 @@ namespace eSchool.Presentation.Controllers
             try
             {
                 var gradesDto = await _gradeService.GetGradeByIdAsync(id);
+
                 var result = new
                 {
                     gradesDto.Id,
                     gradesDto.Name,
                     gradesDto.Section
                 };
+
                 return Ok(result);
             }
             catch (Exception ex)

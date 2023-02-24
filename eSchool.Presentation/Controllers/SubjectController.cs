@@ -25,7 +25,12 @@ namespace eSchool.Presentation.Controllers
                 {
                     x.Id,
                     x.Name,
-                    x.GradeId
+                    Grade = new
+                    {
+                        x.Grade!.Id,
+                        x.Grade.Name,
+                        x.Grade.Section
+                    }
                 }).ToList();
                 return Ok(result);
             }
@@ -45,7 +50,12 @@ namespace eSchool.Presentation.Controllers
                 {
                     subjectDto.Id,
                     subjectDto.Name,
-                    subjectDto.GradeId
+                    Grade = new
+                    {
+                        subjectDto.Grade!.Id,
+                        subjectDto.Grade.Name,
+                        subjectDto.Grade.Section,
+                    }
                 };
                 return Ok(result);
             }

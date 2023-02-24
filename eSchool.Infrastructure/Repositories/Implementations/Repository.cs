@@ -21,13 +21,13 @@ namespace Onion.Infrastructures.Repository.Interface
         }
 
 
-        public async Task AddRangeAsync(IEnumerable<T> entities)
+        virtual public async Task AddRangeAsync(IEnumerable<T> entities)
         {
             await _entities.AddRangeAsync(entities);
             _context.SaveChanges();
         }
 
-        public async Task<IEnumerable<T>> FindAsync(Expression<Func<T, bool>> predicate)
+        virtual public async Task<IEnumerable<T>> FindAsync(Expression<Func<T, bool>> predicate)
         {
             return await _entities.Where(predicate).ToListAsync();
         }
@@ -37,30 +37,36 @@ namespace Onion.Infrastructures.Repository.Interface
             return await _entities.ToListAsync();
         }
 
-        virtual public async Task<T> GetByIdAsync(int Id)
+        virtual public async Task<T> GetByIdAsync(int id)
         {
-            var t = await _entities.FindAsync(Id);
+            var t = await _entities.FindAsync(id);
             return t!;
         }
 
-        public async Task AddAsync(T entity)
+        virtual public async Task AddAsync(T entity)
         {
             await _entities.AddAsync(entity);
         }
 
-        public void Remove(T entity)
+        virtual public void Remove(T entity)
         {
             _entities.Remove(entity);
         }
 
-        public void RemoveRange(IEnumerable<T> entities)
+        virtual public void RemoveRange(IEnumerable<T> entities)
         {
             _entities.RemoveRange(entities);
         }
 
-        public void Update(T entity)
+        virtual public void Update(T entity)
         {
             _context.Entry(entity).State = EntityState.Modified;
+        }
+
+        virtual public async Task<T> GetAsync(Expression<Func<T, bool>> predicate)
+        {
+            var grade = await _entities.FirstOrDefaultAsync(predicate);
+            return grade!;
         }
     }
 }

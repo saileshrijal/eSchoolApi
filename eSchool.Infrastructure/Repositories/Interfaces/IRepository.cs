@@ -6,9 +6,10 @@ namespace Onion.Infrastructures.Repository.Interface
     {
         Task<IEnumerable<T>> GetAllAsync();
         Task<IEnumerable<T>> FindAsync(Expression<Func<T, bool>> predicate);
+        Task<T> GetAsync(Expression<Func<T, bool>> predicate);
         Task AddRangeAsync(IEnumerable<T> entities);
         Task AddAsync(T entity);
-        Task<T> GetByIdAsync(int Id);
+        Task<T> GetByIdAsync(int id);
         void Update(T entity);
         void Remove(T entity);
         void RemoveRange(IEnumerable<T> entities);
