@@ -25,7 +25,6 @@ namespace eSchool.Application.Services.Implementations
             var subject = new Subject()
             {
                 Name = subjectDto.Name,
-                GradeId = subjectDto.GradeId
             };
             await _unitOfWork.Subject.AddAsync(subject);
             await _unitOfWork.SaveAsync();
@@ -46,13 +45,6 @@ namespace eSchool.Application.Services.Implementations
             {
                 Id = x.Id,
                 Name = x.Name,
-                GradeId = x.GradeId,    
-                Grade = new GradeDto()
-                {
-                    Id = x.GradeId,
-                    Name = x.Grade!.Name,
-                    Section = x.Grade.Section,
-                }
             }).ToList();
         }
 
@@ -64,13 +56,6 @@ namespace eSchool.Application.Services.Implementations
             {
                 Id = subject.Id,
                 Name = subject.Name,
-                GradeId = subject.GradeId,
-                Grade = new GradeDto()
-                {
-                    Id = subject.Grade!.Id,
-                    Name = subject.Grade.Name,
-                    Section = subject.Grade.Section
-                }
             };
         }
 

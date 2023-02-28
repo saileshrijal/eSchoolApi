@@ -112,5 +112,47 @@ namespace eSchool.Presentation.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpPost("[action]/{id}")]
+        public async Task<IActionResult> AddSubjectsToGrade(int id, List<int> SubjectIds)
+        {
+            try
+            {
+                await _gradeService.AddSubjectsToGrade(id, SubjectIds);
+                return Ok("Subjects added to grade successfully");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPut("[action]/{id}")]
+        public async Task<IActionResult> UpdateGradeSubjects(int id, List<int> SubjectIds)
+        {
+            try
+            {
+                await _gradeService.UpdateGradeSubjects(id, SubjectIds);
+                return Ok("Subjects added to grade successfully");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet("[action]/{id}")]
+        public async Task<IActionResult> GetSubjectsByGradeId(int id)
+        {
+            try
+            {
+                var subjectsDto = await _gradeService.GetSubjectsByGradeId(id);
+                return Ok(subjectsDto);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }

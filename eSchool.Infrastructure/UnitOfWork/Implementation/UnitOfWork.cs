@@ -12,11 +12,14 @@ namespace eSchool.Infrastructure.UnitOfWork.Implementation
 
         public ISubjectRepository Subject { get; private set; }
 
+        public IGradeSubjectRepository GradeSubject { get; private set; }
+
         public UnitOfWork(ApplicationDbContext context)
         {
             _context = context;
             Grade = new GradeRepository(context);
             Subject = new SubjectRepository(context);
+            GradeSubject = new GradeSubjectRepository(context);
         }
 
         public async Task<int> SaveAsync()

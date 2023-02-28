@@ -21,18 +21,18 @@ namespace Onion.Infrastructures.Repository.Interface
         }
 
 
-        virtual public async Task AddRangeAsync(IEnumerable<T> entities)
+        virtual public async Task AddRangeAsync(List<T> entities)
         {
             await _entities.AddRangeAsync(entities);
             _context.SaveChanges();
         }
 
-        virtual public async Task<IEnumerable<T>> FindAsync(Expression<Func<T, bool>> predicate)
+        virtual public async Task<List<T>> FindAsync(Expression<Func<T, bool>> predicate)
         {
             return await _entities.Where(predicate).ToListAsync();
         }
 
-        virtual public async Task<IEnumerable<T>> GetAllAsync()
+        virtual public async Task<List<T>> GetAllAsync()
         {
             return await _entities.ToListAsync();
         }
@@ -53,7 +53,7 @@ namespace Onion.Infrastructures.Repository.Interface
             _entities.Remove(entity);
         }
 
-        virtual public void RemoveRange(IEnumerable<T> entities)
+        virtual public void RemoveRange(List<T> entities)
         {
             _entities.RemoveRange(entities);
         }

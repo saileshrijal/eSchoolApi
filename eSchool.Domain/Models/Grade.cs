@@ -5,5 +5,6 @@
         public int Id { get; set; }
         public string? Name { get; set; }
         public string? Section { get; set; }
+        public List<GradeSubject>? GradeSubjects { get; set; }
     }
 }
