@@ -129,7 +129,7 @@ namespace eSchool.Application.Services.Implementations
 
             var existingGradeSubjects = grade.GradeSubjects?.ToList();
 
-            var existingSubjectIds = existingGradeSubjects?.Select(x => x.Id).ToList()!;
+            var existingSubjectIds = existingGradeSubjects?.Select(x => x.SubjectId).ToList()!;
 
             //get the subjects to add or remove
             // 
