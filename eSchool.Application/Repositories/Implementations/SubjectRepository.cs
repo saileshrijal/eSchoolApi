@@ -1,9 +1,11 @@
 ﻿using eSchool.Domain.Models;
-using eSchool.Infrastructure.Repositories.Interfaces;
+using eSchool.Application.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using Onion.Infrastructures.Repository.Interface;
+using Onion.Application.Repository.Interface;
+using eSchool.Infrastructure;
+using eSchool.Application.Dtos;
 
-namespace eSchool.Infrastructure.Repositories.Implementations
+namespace eSchool.Application.Repositories.Implementations
 {
     public class SubjectRepository : Repository<Subject>, ISubjectRepository
     {

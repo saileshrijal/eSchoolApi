@@ -1,3 +1,5 @@
+using eSchool.Application.Repositories.Implementations;
+using eSchool.Application.Repositories.Interfaces;
 using eSchool.Application.Services.Implementations;
 using eSchool.Application.Services.Interfaces;
 using eSchool.Infrastructure;
@@ -18,6 +20,12 @@ var builder = WebApplication.CreateBuilder(args);
     builder.Services.AddEndpointsApiExplorer();
 
     builder.Services.AddSwaggerGen();
+
+    builder.Services.AddScoped<ISubjectRepository, SubjectRepository>();
+
+    builder.Services.AddScoped<IGradeRepository, GradeRepository>();
+
+    builder.Services.AddScoped<IGradeSubjectRepository, GradeSubjectRepository>();
 
     builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 

@@ -1,4 +1,5 @@
 ﻿using eSchool.Application.Dtos;
+using eSchool.Application.Repositories.Interfaces;
 using eSchool.Application.Services.Interfaces;
 using eSchool.Presentation.ViewModels;
 using Microsoft.AspNetCore.Mvc;
@@ -10,9 +11,13 @@ namespace eSchool.Presentation.Controllers
     public class SubjectController : ControllerBase
     {
         private readonly ISubjectService _subjectService;
-        public SubjectController(ISubjectService subjectService)
+        private readonly ISubjectRepository _subjectRepository;
+
+        public SubjectController(ISubjectService subjectService,
+                                ISubjectRepository subjectRepository)
         {
             _subjectService = subjectService;
+            _subjectRepository = subjectRepository;
         }
 
         [HttpGet]
@@ -20,8 +25,8 @@ namespace eSchool.Presentation.Controllers
         {
             try
             {
-                var subjectsDto = await _subjectService.GetAllSubjectAsync();
-                var result = subjectsDto.Select(x => new
+                var subjects = await _subjectRepository.GetAll();
+                var result = subjects.Select(x => new
                 {
                     x.Id,
                     x.Name,
@@ -39,11 +44,11 @@ namespace eSchool.Presentation.Controllers
         {
             try
             {
-                var subjectDto = await _subjectService.GetSubjectByIdAsync(id);
+                var subject = await _subjectRepository.GetById(id);
                 var result = new
                 {
-                    subjectDto.Id,
-                    subjectDto.Name,
+                    subject.Id,
+                    subject.Name,
                 };
                 return Ok(result);
             }

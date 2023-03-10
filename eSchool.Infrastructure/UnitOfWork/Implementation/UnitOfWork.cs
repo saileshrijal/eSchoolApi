@@ -1,30 +1,54 @@
-﻿using eSchool.Infrastructure.Repositories.Implementations;
-using eSchool.Infrastructure.Repositories.Interfaces;
-using eSchool.Infrastructure.UnitOfWork.Interface;
+﻿using eSchool.Infrastructure.UnitOfWork.Interface;
 
 namespace eSchool.Infrastructure.UnitOfWork.Implementation
 {
-    public class UnitOfWork:IUnitOfWork
+    public class UnitOfWork : IUnitOfWork
     {
-        private ApplicationDbContext _context;
-
-        public IGradeRepository Grade { get; private set; }
-
-        public ISubjectRepository Subject { get; private set; }
-
-        public IGradeSubjectRepository GradeSubject { get; private set; }
+        private readonly ApplicationDbContext _context;
 
         public UnitOfWork(ApplicationDbContext context)
         {
             _context = context;
-            Grade = new GradeRepository(context);
-            Subject = new SubjectRepository(context);
-            GradeSubject = new GradeSubjectRepository(context);
         }
 
-        public async Task<int> SaveAsync()
+        public void Save()
         {
-            return await _context.SaveChangesAsync();
+            _context.SaveChanges();
+        }
+
+        public async Task SaveAsync()
+        {
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task CreateAsync<T>(T entity)
+        {
+            await _context.AddAsync(entity!);
+        }
+
+        public async Task CreateRangeAsync<T>(IEnumerable<T> entities) where T : class
+        {
+            await _context.AddRangeAsync(entities);
+        }
+
+        public void Remove<T>(T entity)
+        {
+            _context.Remove(entity!);
+        }
+
+        public void RemoveRange<T>(IEnumerable<T> entities) where T : class
+        {
+            _context.RemoveRange(entities);
+        }
+
+        public void Update<T>(T entity)
+        {
+            _context.Update(entity!);
+        }
+
+        public void UpdateRange<T>(IEnumerable<T> entities) where T : class
+        {
+            _context.UpdateRange(entities);
         }
     }
 }

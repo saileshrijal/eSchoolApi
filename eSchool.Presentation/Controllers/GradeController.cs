@@ -1,4 +1,5 @@
 ﻿using eSchool.Application.Dtos;
+using eSchool.Application.Repositories.Interfaces;
 using eSchool.Presentation.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -11,10 +12,16 @@ namespace eSchool.Presentation.Controllers
     public class GradeController : ControllerBase
     {
         private readonly IGradeService _gradeService;
+        private readonly IGradeRepository _gradeRepository;
+        private readonly IGradeSubjectRepository _gradeSubjectRepository;
 
-        public GradeController(IGradeService gradeService)
+        public GradeController(IGradeService gradeService,
+                                IGradeRepository gradeRepository,
+                                IGradeSubjectRepository gradeSubjectRepository)
         {
             _gradeService = gradeService;
+            _gradeRepository = gradeRepository;
+            _gradeSubjectRepository = gradeSubjectRepository;
         }
 
         [HttpGet]
@@ -22,9 +29,9 @@ namespace eSchool.Presentation.Controllers
         {
             try
             {
-                var gradesDto = await _gradeService.GetAllGradesAsync();
+                var grades = await _gradeRepository.GetAll();
                 
-                var result = gradesDto.Select(x => new
+                var result = grades.Select(x => new
                 {
                     x.Id,
                     x.Name,
@@ -43,13 +50,13 @@ namespace eSchool.Presentation.Controllers
         {
             try
             {
-                var gradesDto = await _gradeService.GetGradeByIdAsync(id);
+                var grade = await _gradeRepository.GetById(id);
 
                 var result = new
                 {
-                    gradesDto.Id,
-                    gradesDto.Name,
-                    gradesDto.Section
+                    grade.Id,
+                    grade.Name,
+                    grade.Section
                 };
 
                 return Ok(result);
@@ -141,13 +148,13 @@ namespace eSchool.Presentation.Controllers
             }
         }
 
-        [HttpGet("[action]/{id}")]
-        public async Task<IActionResult> GetSubjectsByGradeId(int id)
+        [HttpGet("[action]")]
+        public async Task<IActionResult> GetGradesWithSubjects()
         {
             try
             {
-                var subjectsDto = await _gradeService.GetSubjectsByGradeId(id);
-                return Ok(subjectsDto);
+                var gradesSubjctsDto = await _gradeSubjectRepository.GetGradesWithSubjects();
+                return Ok(gradesSubjctsDto);
             }
             catch (Exception ex)
             {
